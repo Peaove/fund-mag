@@ -1,14 +1,6 @@
 const mongoose = require('mongoose')
 const { Schema } = mongoose
 
-mongoose.connect('mongodb://localhost:27017/fundMg')
-    .then(() => {
-        console.log('数据库连接成功')
-    })
-    .catch((err) => {
-        console.log(err)
-    })
-
 const userSchema = new Schema({
     username: {
         type: String,
@@ -22,8 +14,9 @@ const userSchema = new Schema({
         type: String,
         required: true
     },
-    avatar: {
+    identity: {
         type: String,
+        required: true,
     },
     date: {
         type: Date,
@@ -31,8 +24,6 @@ const userSchema = new Schema({
     }
 })
 
-const User = mongoose.model('User',userSchema)
+module.exports = mongoose.model('User',userSchema)
 
-module.exports = {
-    User
-}
+
